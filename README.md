@@ -164,3 +164,36 @@ on k.Order_ID=s.Order_ID
 group by Customer_Name, Customer_Segment, [Status]
 order by Customer_Segment
 ```
+I got the list of customers that returned items, and the segment they belong by Joining the two (2) tables given; KMS Sql Case Study and Order_Status
+
+#### 11.	If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
+```
+SELECT Order_Priority, Ship_Mode, COUNT(*) AS Order_Count, SUM(Shipping_Cost) AS Total_Shipping_Cost
+FROM [dbo].[KMS Sql Case Study]
+GROUP BY Order_Priority, Ship_Mode
+ORDER BY Order_Priority, Ship_Mode
+```
+**🚚 Business Insight: The company do not appropriately on shipping cost because the larger percentage of their orders were delivered through regular air regardless of the order priority. The company ought to deliver their orders through express and regular air, only if the order priority is either critical or high.**
+
+
+### ✅ Summary of Findings
+
+- Technology is the top-selling category.
+- West region leads in sales.
+- Personalized marketing can uplift bottom-tier customers.
+- Delivery Truck is the costliest shipping method.
+
+### 🔧 Tools Used
+
+- Microsoft SQL Server
+- SQL queries
+
+###🔒 License
+This project is licensed under the MIT License.
+
+###🕷️ Contribution
+Contributions are welcome! Please submit a pull request or open an issue.
+
+### Contact me via:
+#### Email: oriadechristopheradekunle@gmail.com
+#### WhatsApp/Call: (+234) 903 6878 197
