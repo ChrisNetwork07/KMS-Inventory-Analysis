@@ -42,8 +42,8 @@ findings.
 11. If the delivery truck is the most economical but the slowest shipping method and Express Air is the fastest but the most expensive one, do you think the company appropriately spent shipping costs based on the Order Priority? Explain your answer
 
 ## 📊 Data Analysis
-📖 Case Scenario I: Sales Insights
-1. Highest Sales by Product Category
+### 📖 Case Scenario I: Sales Insights
+#### 1. Highest Sales by Product Category
 ```
 select Product_category, SUM(sales) as [Total Sales]
 from [dbo].[KMS Sql Case Study]
@@ -51,3 +51,47 @@ group by Product_category
 order by SUM(sales) desc
 ```
 **Insight**: Technology had the highest sales.
+
+#### 2. Top 3 and Bottom 3 Sales Regions
+```
+select top 3 Region, SUM(sales) as [Total Sales]
+from [dbo].[KMS Sql Case Study]
+group by Region
+order by SUM(sales) desc
+```
+The top 3 regions in terms of sales are: West (3597549.41), Ontario (3063212.60) and Prarie (2837304.60)
+
+
+```
+select top 3 Region, SUM(sales) as [Total Sales]
+from [dbo].[KMS Sql Case Study]
+group by Region
+order by SUM(sales) asc
+```
+The bottom 3 regions in terms of sales are: Yukon (975867.39), Northwest Territories (800847.35), and Nunavut (116376.47)
+
+#### 3. Total Appliance Sales in Ontario
+```
+select Region, SUM(sales) as [Total Sales]
+from [dbo].[KMS Sql Case Study]
+where Region = 'Ontario'
+group by Region
+```
+**Result**: $3,063,212.60
+
+#### 4. Revenue Uplift Plan for Bottom 10 Customers
+```
+select top 10 Order_ID, customer_name, Region, Order_Priority, Ship_Mode,Shipping_Cost, Profit, customer_segment, SUM(sales) as [Total Sales]
+from [dbo].[KMS Sql Case Study]
+group by Order_ID, customer_name, Region, Order_Priority,Ship_Mode, Shipping_Cost, Profit, customer_segment
+order by SUM(sales) asc
+```
+**Recommendation**: I will advice the management that they should cross-sell and up-sell complementary or premium products to these customers through targeted email with limited-time discounts and loyalty points attach to the products recommendation. That at a certain loyalty point they will be eligible for free shipping of their products.
+
+#### 5. Highest Shipping Cost by Shipping Method
+```
+select top 1 Ship_Mode,SUM(Shipping_Cost) as [Total shipping cost]
+from [dbo].[KMS Sql Case Study]
+group by Ship_Mode
+```
+**Result**: Delivery Truck
