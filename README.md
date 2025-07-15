@@ -194,6 +194,6 @@ This project is licensed under the MIT License.
 ###🕷️ Contribution
 Contributions are welcome! Please submit a pull request or open an issue.
 
-### Contact me via:
-#### Email: oriadechristopheradekunle@gmail.com
-#### WhatsApp/Call: (+234) 903 6878 197
+### 📞 Contact me via:
+#### - Email: oriadechristopheradekunle@gmail.com
+#### - WhatsApp/Call: (+234) 903 6878 197
