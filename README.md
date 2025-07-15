@@ -95,3 +95,72 @@ from [dbo].[KMS Sql Case Study]
 group by Ship_Mode
 ```
 **Result**: Delivery Truck
+
+### 📈 Case Scenario II: Customer Insights
+#### 6. Most Valuable Customers & Products Purchased
+```
+select top 30 Order_ID, customer_name, Order_Quantity,Product_Category, Product_Name, Profit, SUM(sales) as [Total Sales]
+from [dbo].[KMS Sql Case Study]
+group by Order_ID, customer_name, Order_Quantity,Product_Category, Product_Name, Profit
+order by Profit desc
+```
+**Insight**: Most valuable customers purchased Technology & Office Supplies.
+
+#### 7. Highest Sales by Small Business Customer
+```
+select top 1 Customer_Name, Customer_Segment, SUM(Sales) as [Highest Sale]
+from [KMS Sql Case Study]
+where Customer_Segment = 'Small business'
+group by Customer_Name, Customer_Segment
+order by [Highest Sale] desc
+```
+**Result**: Dennis Kane, $75,967.59
+
+#### 8. Most Orders by a Corporate Customer (2009-2012)
+```
+select top 1 Customer_Name, Customer_Segment, Order_Date ,sum(Order_Quantity) as [Highest No of orders]
+from [KMS Sql Case Study]
+where Customer_Segment = 'corporate' and Order_Date between '2009-01-01' and '2012-12-31'
+group by Customer_Name, Customer_Segment, Order_Date
+order by [Highest No of orders] desc
+```
+or
+```
+select top 1 Customer_Name, Customer_Segment, Order_Date ,sum(Order_Quantity) as [Highest No of orders]
+from [KMS Sql Case Study]
+where Customer_Segment = 'corporate' and year(Order_Date) between 2009 and 2012
+group by Customer_Name, Customer_Segment, Order_Date
+order by [Highest No of orders] desc
+```
+**Result**: Laurel Elliston, 148 orders
+
+#### 9. Most Profitable Consumer Customer
+```
+select top 1 Customer_Name, Customer_Segment,sum(Profit) as [Highest Profits]
+from [KMS Sql Case Study]
+where Customer_Segment = 'consumer'
+group by Customer_Name, Customer_Segment
+order by [Highest Profits] desc
+``` 
+alternatively
+```
+select top 1 Customer_Name, Customer_Segment,sum(Profit) as [Highest Profits]
+from [KMS Sql Case Study]
+group by Customer_Name, Customer_Segment
+having Customer_Segment = 'consumer'
+order by [Highest Profits] desc
+```
+**Result**: Emily Phan, $34,005.44 profit
+
+#### 10. Customers Who Returned Items & Their Segments
+```
+[dbo].[KMS Sql Case Study] k
+[dbo].[Order_Status] s
+
+select k.Customer_Name,k.Customer_Segment, s.[Status]
+from [dbo].[KMS Sql Case Study] k
+join [dbo].[Order_Status] s
+on k.Order_ID=s.Order_ID
+group by Customer_Name, Customer_Segment, [Status]
+order by Customer_Segment
+```
